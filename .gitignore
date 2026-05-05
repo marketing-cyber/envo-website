@@ -1,0 +1,18 @@
+# macOS
+.DS_Store
+._*
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node (以防以后引入构建工具)
+node_modules/
+npm-debug.log*
+
+# Logs / temp
+*.log
+.cache/
