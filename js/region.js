@@ -58,19 +58,30 @@
     // Resolve current region (no fetching). Returns "US" or "NZ".
     function current() { return read() || 'US'; }
 
-    // Fetch country code + name from ipapi.co (free, no key, CORS-friendly)
+    // Detect region: try browser timezone first (instant + always accurate for NZ),
+    // fall back to ipapi.co IP geolocation, fall back to US default.
     function detectFromIP() {
+        // Step 1: timezone shortcut for NZ (Pacific/Auckland or Pacific/Chatham)
+        try {
+            var tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || '');
+            if (tz === 'Pacific/Auckland' || tz === 'Pacific/Chatham') {
+                return Promise.resolve({ region: 'NZ', country: 'New Zealand', source: 'tz' });
+            }
+        } catch (e) { /* old browser, skip */ }
+
+        // Step 2: IP-based lookup
         return fetch('https://ipapi.co/json/')
             .then(function (r) { return r.ok ? r.json() : null; })
             .then(function (data) {
-                if (!data) return { region: 'US', country: null };
+                if (!data) return { region: 'US', country: null, source: 'fallback' };
                 return {
                     region: data.country_code === 'NZ' ? 'NZ' : 'US',
                     country: data.country_name || null,
-                    countryCode: data.country_code || null
+                    countryCode: data.country_code || null,
+                    source: 'ip'
                 };
             })
-            .catch(function () { return { region: 'US', country: null }; });
+            .catch(function () { return { region: 'US', country: null, source: 'error' }; });
     }
 
     // Render the top banner
