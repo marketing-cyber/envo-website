@@ -95,6 +95,43 @@ document.addEventListener('DOMContentLoaded', () => {
         revealEls.forEach((el) => { el.classList.add('reveal'); io.observe(el); });
     }
 
+    // Free Layout Design — top promo bar (dismissible)
+    const promoDismissed = localStorage.getItem('envo-promo-dismissed') === '1';
+    if (!promoDismissed) {
+        const bar = document.createElement('div');
+        bar.className = 'promo-bar';
+        bar.innerHTML = `
+            <div class="container promo-inner">
+                <span class="promo-text"><span class="promo-icon">✦</span> <strong>Free Layout Design</strong> — Send us your sign sketch &amp; sizes, we'll spec the LEDs and drivers for you.</span>
+                <a href="${window.location.pathname.includes('/products/') ? '../free-layout-design.html' : 'free-layout-design.html'}" class="promo-cta">Try Free Tool →</a>
+                <button class="promo-close" aria-label="Dismiss promotion">×</button>
+            </div>
+        `;
+        document.body.insertBefore(bar, document.body.firstChild);
+        document.body.classList.add('has-promo');
+        bar.querySelector('.promo-close').addEventListener('click', () => {
+            bar.remove();
+            document.body.classList.remove('has-promo');
+            localStorage.setItem('envo-promo-dismissed', '1');
+        });
+    }
+
+    // Free Layout Design — floating help button (visible after scroll, hover-expand)
+    const fld = document.createElement('a');
+    fld.className = 'fld-fab';
+    fld.href = window.location.pathname.includes('/products/') ? '../free-layout-design.html' : 'free-layout-design.html';
+    fld.setAttribute('aria-label', 'Free Layout Design tool');
+    fld.innerHTML = `
+        <span class="fld-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg></span>
+        <span class="fld-label">Free Layout Design</span>
+    `;
+    document.body.appendChild(fld);
+    const onScrollFld = () => {
+        fld.classList.toggle('is-visible', window.scrollY > 400);
+    };
+    window.addEventListener('scroll', onScrollFld, { passive: true });
+    onScrollFld();
+
     // Newsletter stub
     const form = document.querySelector('.newsletter');
     if (form) {
