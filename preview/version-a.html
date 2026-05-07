@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>ENVO — Version A · Editorial Light</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ========== ENVO Version A · Editorial Light ========== */
+    /* 关键差异：不羽化，强色块对比；centered 居中叙事；超大字号 */
+    :root {
+      --envo-blue: #0071bc;
+      --envo-blue-link: #0066b3;
+      --envo-lime: #aec90b;
+
+      --black: #0a0a0a;
+      --white: #ffffff;
+      --offwhite: #f5f5f7;       /* 经典浅灰 */
+      --fg-on-light: #1d1d1f;    /* 深灰文字色 */
+      --fg-on-light-mute: #6e6e73;
+      --fg-on-dark-mute: #a1a1a6;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    /* a11y: keyboard focus ring (visible on both light and dark sections) */
+    *:focus { outline: none; }
+    *:focus-visible {
+      outline: 2px solid var(--envo-lime);
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+    html, body { background: var(--white); color: var(--fg-on-light); }
+    body {
+      font-family: 'Inter Tight', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+      font-weight: 400;
+      line-height: 1.47;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 22px; }
+    .container-wide { max-width: 1440px; margin: 0 auto; padding: 0 22px; }
+
+    /* ========== 顶部 PROMO BAR（C 主题适配：minimal slim 浅底 + blue link）========== */
+    .promo-bar {
+      background: #f5f5f7;
+      border-bottom: 1px solid rgba(0,0,0,.06);
+      color: var(--fg-on-light-mute);
+      padding: 10px 0;
+      position: relative; z-index: 60;
+      font-size: 13px;
+    }
+    .promo-bar.hidden { display: none; }
+    .promo-bar-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 22px;
+      display: flex; align-items: center; justify-content: center;
+      gap: 12px; flex-wrap: wrap; position: relative;
+    }
+    .promo-bar-text { display: inline-flex; align-items: center; gap: 8px; }
+    .promo-bar-text strong { color: var(--fg-on-light); font-weight: 600; }
+    .promo-bar-icon { color: var(--envo-blue-link); font-size: 11px; }
+    .promo-bar-cta {
+      color: var(--envo-blue-link);
+      font-size: 13px; font-weight: 500;
+      display: inline-flex; align-items: center; gap: 4px;
+    }
+    .promo-bar-cta:hover { text-decoration: underline; }
+    .promo-bar-close {
+      position: absolute; right: 22px;
+      background: transparent; border: none;
+      color: var(--fg-on-light-mute);
+      font-size: 18px; cursor: pointer;
+      padding: 0; line-height: 1;
+      font-family: inherit;
+      width: 24px; height: 24px;
+      display: flex; align-items: center; justify-content: center;
+      border-radius: 50%;
+      transition: all .15s;
+    }
+    .promo-bar-close:hover { background: rgba(0,0,0,.06); color: var(--fg-on-light); }
+
+    /* ========== HEADER — 全局 sticky ========== */
+    .site-header {
+      position: sticky; top: 0; left: 0; right: 0; z-index: 100;
+      height: 56px;
+      background: rgba(245, 245, 247, .82);
+      backdrop-filter: saturate(180%) blur(20px);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid rgba(0,0,0,.06);
+      transition: background .3s;
+    }
+    .header-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 22px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 100%;
+    }
+    .logo img { height: 18px; display: block; }
+    .nav { display: flex; gap: 32px; }
+    .nav a {
+      font-size: 13px; font-weight: 400;
+      color: var(--fg-on-light);
+      opacity: .85;
+      transition: opacity .2s;
+    }
+    .nav a:hover { opacity: 1; color: var(--envo-blue-link); }
+    .header-right { display: flex; align-items: center; gap: 14px; }
+
+    /* Region selector (light theme) */
+    .region-selector { position: relative; }
+    .region-btn {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 6px 12px;
+      background: rgba(0,0,0,.04);
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: 999px;
+      color: var(--fg-on-light-mute);
+      font-size: 12px; font-weight: 500;
+      font-family: inherit; cursor: pointer;
+      transition: all .2s;
+    }
+    .region-btn:hover {
+      background: rgba(0,0,0,.06);
+      border-color: rgba(0,113,188,.3);
+      color: var(--fg-on-light);
+    }
+    .region-btn .chevron { opacity: .5; transition: transform .2s; }
+    .region-selector.open .region-btn .chevron { transform: rotate(180deg); }
+    .region-menu {
+      position: absolute; top: calc(100% + 8px); right: 0;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,.08);
+      border-radius: 12px;
+      padding: 6px; min-width: 220px;
+      display: none; z-index: 200;
+      box-shadow: 0 24px 48px -12px rgba(0,0,0,.15);
+    }
+    .region-selector.open .region-menu { display: block; }
+    .region-menu button {
+      display: block; width: 100%;
+      padding: 10px 14px;
+      background: transparent; border: none;
+      color: var(--fg-on-light-mute);
+      font-size: 13px; text-align: left;
+      border-radius: 8px;
+      cursor: pointer; font-family: inherit;
+      transition: all .15s; position: relative;
+    }
+    .region-menu button:hover { background: rgba(0,113,188,.06); color: var(--envo-blue-link); }
+    .region-menu button.selected { color: var(--envo-blue-link); padding-right: 36px; }
+    .region-menu button.selected::after {
+      content: '✓'; position: absolute; right: 14px; top: 50%; transform: translateY(-50%);
+    }
+    .region-menu .region-meta {
+      padding: 8px 14px 10px;
+      font-size: 11px; color: var(--fg-on-light-mute);
+      letter-spacing: .03em; line-height: 1.4;
+      border-bottom: 1px solid rgba(0,0,0,.06);
+      margin-bottom: 4px;
+    }
+
+    /* FLD banner — light promo banner */
+    .fld-section {
+      background: #f5f5f7;
+      padding: 110px 22px;
+      text-align: center;
+    }
+    .fld-section .container { max-width: 920px; }
+    .fld-eyebrow {
+      font-size: 14px; font-weight: 500;
+      color: var(--envo-blue-link);
+      margin-bottom: 16px;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .fld-eyebrow::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--envo-lime);
+    }
+    .fld-section h2 {
+      font-size: clamp(40px, 5.5vw, 72px);
+      font-weight: 700; line-height: 1.05; letter-spacing: -.025em;
+      margin-bottom: 14px; color: var(--fg-on-light);
+    }
+    .fld-section h2 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--envo-blue) 0%, var(--envo-lime) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .fld-section p {
+      font-size: clamp(18px, 1.8vw, 22px);
+      color: var(--fg-on-light-mute);
+      max-width: 640px; margin: 0 auto 32px;
+    }
+    .fld-actions { display: inline-flex; gap: 28px; align-items: center; }
+
+    /* Final CTA — dark bg confidence closer */
+    .final-cta {
+      background: var(--black);
+      color: #fff;
+      padding: 130px 22px;
+      text-align: center;
+    }
+    .final-cta h2 {
+      font-size: clamp(48px, 6vw, 88px);
+      font-weight: 700; line-height: 1.02; letter-spacing: -.025em;
+      margin-bottom: 16px;
+    }
+    .final-cta h2 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--envo-blue-glow, #4dc3ff) 0%, var(--envo-lime) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .final-cta p {
+      font-size: 19px; color: var(--fg-on-dark-mute);
+      max-width: 560px; margin: 0 auto 36px;
+    }
+    .final-cta-actions { display: inline-flex; gap: 28px; align-items: center; }
+    .final-cta-actions .panel-link { color: #2997ff; font-size: 18px; }
+
+    /* ========== HERO — centered, white bg, big type ========== */
+    .hero {
+      background: var(--white);
+      padding: 140px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 14px; font-weight: 500;
+      color: var(--envo-blue-link);
+      margin-bottom: 20px;
+      opacity: 0; animation: fadein .8s .1s forwards;
+    }
+    .hero-eyebrow::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--envo-lime);
+    }
+    .hero h1 {
+      font-size: clamp(48px, 8vw, 96px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -.025em;
+      margin-bottom: 12px;
+      color: var(--fg-on-light);
+      opacity: 0; animation: fadeup 1s .15s forwards;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--envo-blue) 0%, var(--envo-lime) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: clamp(20px, 2.2vw, 28px);
+      font-weight: 500;
+      letter-spacing: -.005em;
+      color: var(--fg-on-light);
+      max-width: 720px; margin: 0 auto 28px;
+      opacity: 0; animation: fadeup 1s .3s forwards;
+    }
+    .hero-links {
+      display: inline-flex; gap: 28px; align-items: center;
+      margin-bottom: 60px;
+      opacity: 0; animation: fadeup 1s .45s forwards;
+    }
+    .hero-link {
+      font-size: 17px; font-weight: 400;
+      color: var(--envo-blue-link);
+      display: inline-flex; align-items: center; gap: 4px;
+    }
+    .hero-link:hover { text-decoration: underline; }
+    .hero-link .arrow { transition: transform .25s; display: inline-block; }
+    .hero-link:hover .arrow { transform: translateX(2px); }
+
+    .hero-product {
+      max-width: 680px; margin: 0 auto;
+      position: relative;
+      opacity: 0; animation: floatup 1.2s .5s forwards;
+    }
+    .hero-product img {
+      width: 100%; max-width: 480px; margin: 0 auto;
+      filter: drop-shadow(0 30px 60px rgba(0,113,188,.15));
+    }
+    @keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes fadeup {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes floatup {
+      from { opacity: 0; transform: translateY(40px) scale(.95); }
+      to   { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    /* ========== CASES SECTION（3 项目卡）========== */
+    .cases-section {
+      background: var(--white);
+      padding: 110px 22px;
+    }
+    .cases-section .container { max-width: 1200px; margin: 0 auto; }
+    .cases-section .section-head {
+      text-align: center; max-width: 720px; margin: 0 auto 60px;
+    }
+    .cases-section .section-head h2 {
+      font-size: clamp(36px, 4.5vw, 56px);
+      font-weight: 700; letter-spacing: -.02em; line-height: 1.05;
+      color: var(--fg-on-light); margin-bottom: 12px;
+    }
+    .cases-section .section-head h2 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--envo-blue) 0%, var(--envo-lime) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .cases-section .section-head p {
+      font-size: 18px; color: var(--fg-on-light-mute);
+      max-width: 560px; margin: 0 auto;
+    }
+    .cases-grid {
+      display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 16px;
+      grid-template-rows: 480px;
+    }
+    .case-card {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform .4s ease;
+      background-size: cover; background-position: center;
+    }
+    .case-card:hover { transform: translateY(-4px); }
+    .case-card::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.85) 100%);
+    }
+    .case-content {
+      position: absolute; left: 0; right: 0; bottom: 0;
+      padding: 32px; z-index: 2;
+      color: #fff;
+    }
+    .case-meta {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+      color: var(--envo-lime); font-weight: 500;
+      margin-bottom: 12px;
+    }
+    .case-meta::before {
+      content: ''; width: 5px; height: 5px; border-radius: 50%;
+      background: var(--envo-lime); box-shadow: 0 0 8px var(--envo-lime);
+    }
+    .case-card h3 {
+      font-size: 26px; font-weight: 600; letter-spacing: -.01em;
+      margin-bottom: 8px; line-height: 1.1;
+    }
+    .case-card p {
+      font-size: 14px; color: rgba(255,255,255,.85); line-height: 1.5;
+      max-height: 0; overflow: hidden; opacity: 0;
+      transition: all .4s ease;
+    }
+    .case-card:hover p { max-height: 100px; opacity: 1; margin-top: 8px; }
+    /* Mobile / no-hover devices: always show description (no hover trigger) */
+    @media (hover: none) {
+      .case-card p { max-height: 100px; opacity: 1; margin-top: 8px; }
+    }
+    .case-tags { display: flex; gap: 6px; margin-top: 16px; flex-wrap: wrap; }
+    .case-tag {
+      font-size: 11px; padding: 4px 10px;
+      border: 1px solid rgba(255,255,255,.2);
+      border-radius: 999px;
+      backdrop-filter: blur(8px);
+      background: rgba(255,255,255,.05);
+    }
+
+    /* ========== PRODUCT PANELS — stacked cards 风格 ========== */
+    .panel {
+      padding: 110px 22px 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .panel-dark { background: var(--black); color: var(--white); }
+    .panel-light { background: var(--offwhite); color: var(--fg-on-light); }
+
+    .panel-eyebrow {
+      font-size: 14px; font-weight: 500;
+      color: var(--envo-blue-link);
+      margin-bottom: 12px;
+    }
+    .panel-dark .panel-eyebrow { color: var(--envo-lime); }
+
+    .panel h2 {
+      font-size: clamp(40px, 6vw, 80px);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -.02em;
+      margin: 0 auto 14px;
+      max-width: 14ch;          /* 强制 1-2 行内换行，宽屏不被裁 */
+    }
+    .panel-tagline {
+      font-size: clamp(18px, 1.8vw, 24px);
+      font-weight: 500;
+      max-width: 600px; margin: 0 auto 28px;
+      letter-spacing: -.005em;
+    }
+    .panel-dark .panel-tagline { color: var(--fg-on-dark-mute); }
+    .panel-light .panel-tagline { color: var(--fg-on-light-mute); }
+
+    .panel-links {
+      display: inline-flex; gap: 28px; align-items: center;
+      margin-bottom: 60px;
+    }
+    .panel-link {
+      font-size: 17px;
+      color: var(--envo-blue-link);
+      display: inline-flex; align-items: center; gap: 4px;
+    }
+    .panel-dark .panel-link { color: #2997ff; }   /* 暗底链接色 */
+    .panel-link:hover { text-decoration: underline; }
+    .panel-link .arrow { display: inline-block; transition: transform .25s; }
+    .panel-link:hover .arrow { transform: translateX(2px); }
+
+    .panel-product {
+      max-width: 560px; margin: 0 auto;
+      position: relative;
+    }
+    .panel-product { position: relative; }
+    .panel-product img {
+      width: 100%; max-width: 420px; margin: 0 auto;
+      transition: transform .8s ease;
+      position: relative; z-index: 2;
+    }
+
+    /* Dark panel：产品后面加柔和"舞台灯"，让带电线的产品图在暗底上读得清 */
+    .panel-dark .panel-product::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%; transform: translate(-50%, -50%);
+      width: 70%; height: 75%;
+      background: radial-gradient(ellipse,
+        rgba(255,255,255,.10) 0%,
+        rgba(174,201,11,.06) 30%,
+        rgba(0,113,188,.04) 55%,
+        transparent 75%);
+      filter: blur(50px);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .panel-dark .panel-product img {
+      filter: drop-shadow(0 0 40px rgba(174,201,11,.2)) drop-shadow(0 20px 40px rgba(0,0,0,.5));
+    }
+    .panel-light .panel-product img {
+      filter: drop-shadow(0 30px 50px rgba(0,0,0,.12));
+    }
+    .panel:hover .panel-product img { transform: scale(1.04); }
+
+    /* ========== SCENE STRIP — 每个 panel 底部加真实场景图 ========== */
+    .panel-scene {
+      max-width: 1200px;
+      margin: 80px auto 0;
+      height: 380px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 30px 60px -24px rgba(0,0,0,.4);
+    }
+    .panel-light .panel-scene { box-shadow: 0 30px 60px -24px rgba(0,0,0,.18); }
+    .panel-scene::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 0%, transparent 55%, rgba(0,0,0,.55) 100%);
+      pointer-events: none;
+    }
+    .panel-scene-caption {
+      position: absolute; bottom: 28px; left: 28px;
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 13px; font-weight: 500;
+      color: #fff;
+      background: rgba(255,255,255,.14);
+      padding: 8px 16px;
+      border-radius: 999px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      letter-spacing: .02em;
+      border: 1px solid rgba(255,255,255,.2);
+      z-index: 2;
+    }
+    .panel-scene-caption::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--envo-lime);
+      box-shadow: 0 0 8px var(--envo-lime);
+    }
+
+    /* ========== Scroll reveal (subtle fade-up) ========== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .9s cubic-bezier(.2,.65,.2,1), transform .9s cubic-bezier(.2,.65,.2,1);
+      will-change: opacity, transform;
+    }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    .reveal[data-delay="1"] { transition-delay: .08s; }
+    .reveal[data-delay="2"] { transition-delay: .16s; }
+    .reveal[data-delay="3"] { transition-delay: .24s; }
+    .reveal[data-delay="4"] { transition-delay: .32s; }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .hero-product img { animation: none !important; }
+    }
+
+    /* Panel 3: "in the wild" 沉浸式
+       策略：场景图只在四周边缘露一点 atmospheric vignette；
+       中心 70% 完全纯黑，确保产品 PNG 任何边缘 halo 都看不见；
+       产品后面加 lime + blue 双色发光 backdrop 模拟通电 */
+    .panel-immersive {
+      background:
+        radial-gradient(ellipse 70% 60% at 50% 50%, var(--black) 0%, var(--black) 60%, rgba(10,10,10,.6) 85%, transparent 100%),
+        linear-gradient(rgba(10,10,10,.92), rgba(10,10,10,.92)),
+        url('./assets/images/ind-architectural.jpg') center/cover no-repeat;
+    }
+    .panel-immersive .panel-product::before {
+      width: 95%; height: 95%;
+      background: radial-gradient(ellipse,
+        rgba(255,255,255,.14) 0%,
+        rgba(174,201,11,.12) 25%,
+        rgba(0,113,188,.06) 55%,
+        transparent 75%);
+      filter: blur(60px);
+    }
+    .panel-immersive .panel-product img {
+      filter: drop-shadow(0 0 60px rgba(174,201,11,.3)) drop-shadow(0 20px 40px rgba(0,0,0,.7));
+    }
+
+    /* spec strip — 经典 4 列小信息条 */
+    .spec-strip {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      max-width: 880px; margin: 60px auto 0;
+      padding-top: 32px;
+      border-top: 1px solid rgba(255,255,255,.12);
+    }
+    .panel-light .spec-strip { border-top-color: rgba(0,0,0,.1); }
+    .spec-strip > div { padding: 0 16px; }
+    .spec-num {
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 700; letter-spacing: -.015em;
+      margin-bottom: 4px;
+    }
+    .spec-label {
+      font-size: 13px;
+      color: var(--fg-on-dark-mute);
+    }
+    .panel-light .spec-label { color: var(--fg-on-light-mute); }
+
+    /* ========== FAMILY GRID — "Compare the family" 模式 ========== */
+    .family {
+      background: var(--offwhite);
+      padding: 110px 22px;
+    }
+    .family-head { text-align: center; margin-bottom: 60px; }
+    .family-head h2 {
+      font-size: clamp(36px, 4.5vw, 56px);
+      font-weight: 700; letter-spacing: -.02em;
+      line-height: 1.05;
+    }
+    .family-head p {
+      font-size: 19px; color: var(--fg-on-light-mute);
+      max-width: 520px; margin: 12px auto 0;
+    }
+    .family-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+      max-width: 1200px; margin: 0 auto;
+    }
+    .family-card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 40px 32px;
+      text-align: center;
+      border: 1px solid transparent;
+      transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+      cursor: pointer;
+    }
+    .family-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0,113,188,.18);
+      box-shadow: 0 16px 40px -12px rgba(0,113,188,.14);
+    }
+    .family-card-img {
+      height: 180px; display: flex; align-items: center; justify-content: center;
+      margin-bottom: 24px;
+    }
+    .family-card-img img { max-height: 100%; max-width: 75%; }
+    .family-card h3 {
+      font-size: 22px; font-weight: 600; letter-spacing: -.01em;
+      margin-bottom: 6px;
+    }
+    .family-card p { font-size: 14px; color: var(--fg-on-light-mute); margin-bottom: 16px; }
+    .family-card .panel-link { font-size: 14px; }
+
+    /* ========== FEATURED PROJECT — full bleed ========== */
+    .featured {
+      background: var(--black);
+      color: var(--white);
+      padding: 110px 22px 0;
+      text-align: center;
+    }
+    .featured-eyebrow {
+      font-size: 14px; font-weight: 500;
+      color: var(--envo-lime);
+      margin-bottom: 12px;
+    }
+    .featured h2 {
+      font-size: clamp(40px, 5.5vw, 72px);
+      font-weight: 700; line-height: 1.05; letter-spacing: -.02em;
+      margin-bottom: 14px;
+    }
+    .featured-tagline {
+      font-size: clamp(18px, 1.8vw, 22px);
+      color: var(--fg-on-dark-mute);
+      max-width: 600px; margin: 0 auto 24px;
+    }
+    .featured-link {
+      display: inline-flex; align-items: center; gap: 4px;
+      color: #2997ff; font-size: 17px;
+      margin-bottom: 64px;
+    }
+    .featured-link:hover { text-decoration: underline; }
+    .featured-image {
+      width: 100%; max-width: 1440px; margin: 0 auto;
+      height: 60vh; min-height: 480px;
+      background: url('./assets/images/ind-architectural.jpg') center/cover no-repeat;
+      border-top-left-radius: 18px;
+      border-top-right-radius: 18px;
+    }
+
+    /* ========== CERT STRIP — "Independently certified" 风 ========== */
+    .cert-strip {
+      padding: 36px 22px 32px;
+      background: var(--white);
+      border-top: 1px solid rgba(0,0,0,.06);
+      border-bottom: 1px solid rgba(0,0,0,.06);
+      text-align: center;
+    }
+    .cert-eyebrow {
+      font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
+      color: var(--envo-blue-link); font-weight: 500;
+      margin-bottom: 16px;
+    }
+    .cert-inner {
+      max-width: 980px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: center;
+      flex-wrap: wrap; gap: 6px 0;
+      font-size: 13px; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--fg-on-light-mute); font-weight: 400;
+    }
+    .cert-inner span { display: inline-flex; align-items: center; padding: 0 14px; }
+    .cert-inner span:not(:last-child)::after {
+      content: '·';
+      margin-left: 14px;
+      color: rgba(0,0,0,.28);
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    /* ========== FOOTER — 跟 D 同结构（4 列+newsletter+cert），light 主题 ========== */
+    footer { background: var(--offwhite); padding: 0; }
+    .brand-footer-wrap {
+      max-width: 1200px; margin: 0 auto;
+      padding: 96px 22px 32px;
+    }
+    .brand-footer-grid {
+      display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.4fr; gap: 64px;
+      padding-bottom: 64px;
+      border-bottom: 1px solid rgba(0,0,0,.08);
+    }
+    .brand-footer-brand img { height: 22px; margin-bottom: 20px; }
+    .brand-footer-brand p {
+      font-size: 14px; color: var(--fg-on-light-mute); line-height: 1.6; max-width: 280px;
+      margin-bottom: 20px;
+    }
+    .brand-footer-email {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-size: 14px; font-weight: 500;
+      color: var(--envo-blue);
+      transition: opacity .2s;
+    }
+    .brand-footer-email:hover { opacity: .7; }
+    .brand-footer-email::before {
+      content: ''; width: 18px; height: 1px;
+      background: var(--envo-blue);
+    }
+    .brand-footer-col h5 {
+      font-size: 12px; letter-spacing: .15em; text-transform: uppercase;
+      font-weight: 600; color: var(--fg-on-light); margin-bottom: 20px;
+    }
+    .brand-footer-col ul { list-style: none; }
+    .brand-footer-col li { margin-bottom: 12px; }
+    .brand-footer-col a {
+      font-size: 14px; color: var(--fg-on-light-mute);
+      transition: color .2s;
+    }
+    .brand-footer-col a:hover { color: var(--envo-blue); }
+    .brand-footer-newsletter input {
+      width: 100%;
+      background: #fff; border: 1px solid rgba(0,0,0,.12);
+      padding: 12px 16px; font-size: 14px; border-radius: 999px;
+      font-family: inherit; color: var(--fg-on-light); margin-bottom: 12px;
+      transition: border-color .2s;
+    }
+    .brand-footer-newsletter input:focus { outline: none; border-color: var(--envo-blue); }
+    .brand-footer-newsletter-note {
+      font-size: 12px; color: var(--fg-on-light-mute); line-height: 1.5;
+      margin-top: 14px;
+    }
+    .brand-footer-newsletter button {
+      background: var(--fg-on-light); color: #fff; border: none;
+      padding: 12px 24px; font-size: 13px; font-weight: 500; border-radius: 999px;
+      cursor: pointer; font-family: inherit;
+      transition: background .2s;
+    }
+    .brand-footer-newsletter button:hover { background: var(--envo-blue); }
+    .brand-footer-contact {
+      margin-top: 24px; font-size: 13px; color: var(--fg-on-light-mute); line-height: 1.7;
+    }
+    .brand-footer-contact a { color: var(--fg-on-light); }
+    .brand-footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 32px; flex-wrap: wrap; gap: 16px;
+    }
+    .brand-footer-bottom p { font-size: 12px; color: var(--fg-on-light-mute); }
+    .brand-footer-legal { display: flex; gap: 24px; }
+    .brand-footer-legal a {
+      font-size: 12px; color: var(--fg-on-light-mute);
+      transition: color .2s;
+    }
+    .brand-footer-legal a:hover { color: var(--fg-on-light); }
+    .brand-footer-region {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; color: var(--fg-on-light-mute);
+    }
+    .brand-footer-region::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
+      background: var(--envo-lime);
+    }
+
+    /* Header CTA pill (Find your match) — 圆角胶囊 */
+    .header-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 16px; border-radius: 999px;
+      background: var(--envo-blue); color: #fff;
+      font-size: 13px; font-weight: 500;
+      transition: all .2s;
+    }
+    .header-cta:hover { background: #005a96; }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 880px) {
+      .nav { display: none; }
+      .family-grid { grid-template-columns: 1fr; }
+      .spec-strip { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+      .panel { padding: 80px 22px 60px; }
+      .hero { padding: 100px 0 60px; }
+      .hero-links, .panel-links { flex-direction: column; gap: 16px; }
+      .brand-footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .cert-inner { gap: 4px 0; font-size: 11px; }
+      .cert-inner span { padding: 0 8px; }
+      .cert-inner span:not(:last-child)::after { margin-left: 8px; font-size: 14px; }
+      .cert-eyebrow { font-size: 10px; margin-bottom: 12px; }
+      .cases-grid { grid-template-columns: 1fr; grid-template-rows: repeat(3, 360px); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============== 顶部 promo bar（FLD 推广，主题适配，slim）============== -->
+<div class="promo-bar" id="promo-bar">
+  <div class="promo-bar-inner">
+    <span class="promo-bar-text">
+      <span class="promo-bar-icon">✦</span>
+      <strong>Free Layout Design</strong> — Send us your sign sketch &amp; sizes, we'll spec the LEDs and drivers for you.
+    </span>
+    <a href="#" class="promo-bar-cta">Try Free Tool →</a>
+    <button class="promo-bar-close" type="button" aria-label="Dismiss">×</button>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#" class="logo"><img src="./assets/images/logo-envo.svg" alt="ENVO" /></a>
+    <nav class="nav">
+      <a href="#">Products</a>
+      <a href="#">Solutions</a>
+      <a href="#">Industries</a>
+      <a href="#">Resources</a>
+      <a href="#">Contact</a>
+    </nav>
+    <div class="header-right">
+      <div class="region-selector" id="region-selector">
+        <button class="region-btn" type="button" aria-haspopup="true">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span class="region-label">US · Global</span>
+          <svg class="chevron" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="region-menu" role="menu">
+          <div class="region-meta">Choose your region for local availability and trade pricing.</div>
+          <button data-region="US" type="button">United States · Global</button>
+          <button data-region="NZ" type="button">New Zealand</button>
+        </div>
+      </div>
+      <a href="#" class="header-cta">Find your match →</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-eyebrow">Engineered Illumination · International Compliance</div>
+    <h1>Light, <em>engineered.</em></h1>
+    <p class="hero-sub">Six signage module families. Three driver lines. One uniform glow.</p>
+    <div class="hero-links">
+      <a href="#" class="hero-link">Find your match <span class="arrow">›</span></a>
+      <a href="#" class="hero-link">Explore the range <span class="arrow">›</span></a>
+    </div>
+    <div class="hero-product">
+      <img src="./assets/images/mod-eco.png" alt="EcoGlo Module" />
+    </div>
+  </div>
+</section>
+
+<!-- ============== PANEL 1 — EcoGlo (DARK) ============== -->
+<section class="panel panel-dark">
+  <div class="panel-eyebrow">Most popular</div>
+  <h2>EcoGlo. <em style="font-style:normal; color:var(--envo-lime);">The standard.</em></h2>
+  <p class="panel-tagline">Quad-LED diamondback optics deliver facade-grade uniformity at 35–60 mm depth — EV-BLEG family, four SKUs.</p>
+  <div class="panel-links">
+    <a href="#" class="panel-link">Learn more <span class="arrow">›</span></a>
+    <a href="#" class="panel-link">View specs <span class="arrow">›</span></a>
+  </div>
+  <div class="panel-product">
+    <img src="./assets/images/mod-eco.png" alt="EcoGlo" />
+  </div>
+  <div class="spec-strip">
+    <div><div class="spec-num">1.6<span style="font-size:.55em; opacity:.6;">W</span></div><div class="spec-label">Per module</div></div>
+    <div><div class="spec-num">170<span style="font-size:.55em; opacity:.6;">°</span></div><div class="spec-label">Beam angle</div></div>
+    <div><div class="spec-num">IP65</div><div class="spec-label">Sealed</div></div>
+    <div><div class="spec-num">5<span style="font-size:.55em; opacity:.6;">yr</span></div><div class="spec-label">Warranty</div></div>
+  </div>
+  <div class="panel-scene" style="background-image: url('./assets/images/ind-retail.jpg');">
+    <div class="panel-scene-caption">In the wild · Retail signage · Wellington</div>
+  </div>
+</section>
+
+<!-- ============== PANEL 2 — EdgeLume (LIGHT) ============== -->
+<section class="panel panel-light">
+  <div class="panel-eyebrow">Sidelit · New profile</div>
+  <h2>EdgeLume. <em style="font-style:normal; background: linear-gradient(135deg, var(--envo-blue) 0%, var(--envo-lime) 100%); -webkit-background-clip:text; -webkit-text-fill-color: transparent; background-clip:text;">Slimmer, sharper.</em></h2>
+  <p class="panel-tagline">Side-emitting geometry under 35 mm — built for ultra-thin lightboxes and edge-lit signage where depth is precious.</p>
+  <div class="panel-links">
+    <a href="#" class="panel-link">Learn more <span class="arrow">›</span></a>
+    <a href="#" class="panel-link">View specs <span class="arrow">›</span></a>
+  </div>
+  <div class="panel-product">
+    <img src="./assets/images/mod-sidelit.png" alt="EdgeLume" />
+  </div>
+  <div class="spec-strip">
+    <div><div class="spec-num">&lt;35<span style="font-size:.55em; opacity:.6;">mm</span></div><div class="spec-label">Depth</div></div>
+    <div><div class="spec-num">120<span style="font-size:.55em; opacity:.6;">°</span></div><div class="spec-label">Side beam</div></div>
+    <div><div class="spec-num">IP65</div><div class="spec-label">Sealed</div></div>
+    <div><div class="spec-num">5<span style="font-size:.55em; opacity:.6;">yr</span></div><div class="spec-label">Warranty</div></div>
+  </div>
+  <div class="panel-scene" style="background-image: url('./assets/images/ind-commercial.jpg');">
+    <div class="panel-scene-caption">In the wild · Lightbox &amp; edge-lit signage</div>
+  </div>
+</section>
+
+<!-- ============== PANEL 3 — UltraFlare (DARK + IMMERSIVE SCENE BG) ============== -->
+<section class="panel panel-dark panel-immersive">
+  <div class="panel-eyebrow">Pro · High lumen</div>
+  <h2>UltraFlare. <em style="font-style:normal; color:var(--envo-lime);">More light. Less depth.</em></h2>
+  <p class="panel-tagline">Pro-tier 90–150 mm depth with high lumen output. Built for monumental channel letters and pylon signage — EV-BLUF family.</p>
+  <div class="panel-links">
+    <a href="#" class="panel-link">Learn more <span class="arrow">›</span></a>
+    <a href="#" class="panel-link">View specs <span class="arrow">›</span></a>
+  </div>
+  <div class="panel-product">
+    <img src="./assets/images/mod-pro.png" alt="UltraFlare" />
+  </div>
+  <div class="spec-strip">
+    <div><div class="spec-num">2.4<span style="font-size:.55em; opacity:.6;">W</span></div><div class="spec-label">Per module</div></div>
+    <div><div class="spec-num">160<span style="font-size:.55em; opacity:.6;">°</span></div><div class="spec-label">Beam angle</div></div>
+    <div><div class="spec-num">IP67</div><div class="spec-label">Sealed</div></div>
+    <div><div class="spec-num">5<span style="font-size:.55em; opacity:.6;">yr</span></div><div class="spec-label">Warranty</div></div>
+  </div>
+</section>
+
+<!-- ============== HERO 场景片段 ("see it in scale" full-width photo) ============== -->
+<section style="background: var(--white); padding: 0;">
+  <div style="max-width: 1440px; margin: 0 auto; padding: 80px 22px;">
+    <div style="position: relative; height: 60vh; min-height: 500px; border-radius: 24px; overflow: hidden; background: url('./assets/images/ind-hospitality.jpg') center/cover no-repeat; box-shadow: 0 40px 80px -32px rgba(0,0,0,.25);">
+      <div style="position: absolute; inset: 0; background: linear-gradient(135deg, rgba(0,0,0,0) 30%, rgba(0,0,0,.7) 100%);"></div>
+      <div style="position: absolute; bottom: 48px; left: 48px; right: 48px; color: #fff; max-width: 540px;">
+        <div style="font-size: 14px; font-weight: 500; color: var(--envo-lime); margin-bottom: 12px; letter-spacing: .02em;">Engineered for every scale</div>
+        <h2 style="font-size: clamp(32px, 4vw, 52px); font-weight: 700; line-height: 1.05; letter-spacing: -.015em; margin-bottom: 12px;">From storefronts<br>to skylines.</h2>
+        <p style="font-size: 17px; color: rgba(255,255,255,.85); line-height: 1.5;">From a single channel letter to a multi-storey facade — the same colour binning, the same drive current, the same five-year warranty.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FAMILY ============== -->
+<section class="family">
+  <div class="family-head">
+    <h2>The full family.</h2>
+    <p>Six module series, every depth, every application.</p>
+  </div>
+  <div class="family-grid">
+    <article class="family-card reveal">
+      <div class="family-card-img"><img src="./assets/images/mod-mini.png" alt="MiniLux" /></div>
+      <h3>MiniLux</h3>
+      <p>Compact entry — small letters, tight curves.</p>
+      <a href="#" class="panel-link">Learn more <span class="arrow">›</span></a>
+    </article>
+    <article class="family-card reveal">
+      <div class="family-card-img"><img src="./assets/images/mod-rgb.png" alt="ChromaFlux" /></div>
+      <h3>ChromaFlux</h3>
+      <p>RGB / RGBW for dynamic facade lighting.</p>
+      <a href="#" class="panel-link">Learn more <span class="arrow">›</span></a>
+    </article>
+    <article class="family-card reveal">
+      <div class="family-card-img"><img src="./assets/images/mod-24v.png" alt="OptiLume" /></div>
+      <h3>OptiLume</h3>
+      <p>24 V — long runs, low voltage drop.</p>
+      <a href="#" class="panel-link">Learn more <span class="arrow">›</span></a>
+    </article>
+  </div>
+</section>
+
+<!-- ============== CASES SHOWCASE（跟 D 对齐）============== -->
+<section class="cases-section reveal">
+  <div class="container">
+    <div class="section-head">
+      <h2>Recent <em>installations.</em></h2>
+      <p>Where ENVO modules are working right now — facade to storefront.</p>
+    </div>
+    <div class="cases-grid">
+      <article class="case-card reveal" data-delay="1" style="background-image: url('./assets/images/ind-architectural.jpg');">
+        <div class="case-content">
+          <div class="case-meta">Architectural · Auckland CBD</div>
+          <h3>Commercial facade</h3>
+          <p>EcoGlo Quad modules across multi-storey building with zigbee control gateway.</p>
+          <div class="case-tags">
+            <span class="case-tag">EcoGlo</span>
+            <span class="case-tag">Linear Driver</span>
+            <span class="case-tag">Zigbee</span>
+          </div>
+        </div>
+      </article>
+      <article class="case-card reveal" data-delay="2" style="background-image: url('./assets/images/ind-retail.jpg');">
+        <div class="case-content">
+          <div class="case-meta">Retail · Wellington</div>
+          <h3>Storefront signage</h3>
+          <p>Channel letter signage with EdgeLume sidelit modules for sub-30mm depth.</p>
+          <div class="case-tags">
+            <span class="case-tag">EdgeLume</span>
+            <span class="case-tag">Triac Driver</span>
+          </div>
+        </div>
+      </article>
+      <article class="case-card reveal" data-delay="3" style="background-image: url('./assets/images/ind-hospitality.jpg');">
+        <div class="case-content">
+          <div class="case-meta">Hospitality · Christchurch</div>
+          <h3>Hotel facade</h3>
+          <p>RGB facade with ChromaFlux modules driving programmable colour scenes.</p>
+          <div class="case-tags">
+            <span class="case-tag">ChromaFlux</span>
+            <span class="case-tag">Smart Hub</span>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FEATURED ============== -->
+<section class="featured">
+  <div class="featured-eyebrow">Project · Auckland CBD</div>
+  <h2>Commercial facade.</h2>
+  <p class="featured-tagline">EcoGlo Quad modules. One zigbee gateway. Years of consistent light.</p>
+  <a href="#" class="featured-link">Read the case study <span style="display:inline-block;">›</span></a>
+  <div class="featured-image"></div>
+</section>
+
+<!-- ============== FLD BANNER (light promo) ============== -->
+<section class="fld-section">
+  <div class="container reveal">
+    <div class="fld-eyebrow">Complimentary service</div>
+    <h2>Your project,<br><em>planned by us.</em></h2>
+    <p>Send us your sign dimensions. We'll return a complete BOM — module count, driver sizing, and cabling — in 48 hours. No commitment.</p>
+    <div class="fld-actions">
+      <a href="#" class="panel-link">Request layout design <span class="arrow">›</span></a>
+      <a href="#" class="panel-link">See how it works <span class="arrow">›</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== FINAL CTA (dark closer) ============== -->
+<section class="final-cta">
+  <div class="container reveal">
+    <h2>Ready to engineer<br>your <em>next project?</em></h2>
+    <p>Find your match in 60 seconds, or talk to an engineer.</p>
+    <div class="final-cta-actions">
+      <a href="#" class="panel-link">Find your match <span class="arrow">›</span></a>
+      <a href="#" class="panel-link">Contact engineering <span class="arrow">›</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============== CERT STRIP ============== -->
+<div class="cert-strip">
+  <div class="cert-eyebrow">Independently certified</div>
+  <div class="cert-inner">
+    <span>UL</span><span>CE</span><span>TÜV</span><span>CB</span><span>LM-80</span><span>RoHS</span><span>IP65</span>
+  </div>
+</div>
+
+<!-- ============== FOOTER (4 列结构, 跟 D 对齐) ============== -->
+<footer>
+  <div class="brand-footer-wrap">
+    <div class="brand-footer-grid">
+      <div class="brand-footer-brand">
+        <img src="./assets/images/logo-envo.svg" alt="ENVO" />
+        <p>Engineered illumination for architects, sign makers, and electrical contractors. ENVO branded · International compliance · Shipped globally.</p>
+        <a href="mailto:contact@envo.com" class="brand-footer-email">contact@envo.com</a>
+      </div>
+      <div class="brand-footer-col">
+        <h5>Products</h5>
+        <ul>
+          <li><a href="#">Signage Modules</a></li>
+          <li><a href="#">LED Drivers</a></li>
+          <li><a href="#">Control Gear</a></li>
+          <li><a href="#">Accessories</a></li>
+          <li><a href="#">Find Your Match</a></li>
+        </ul>
+      </div>
+      <div class="brand-footer-col">
+        <h5>Company</h5>
+        <ul>
+          <li><a href="#">About ENVO</a></li>
+          <li><a href="#">Industries</a></li>
+          <li><a href="#">Solutions</a></li>
+          <li><a href="#">Resources</a></li>
+          <li><a href="#">Free Layout Design</a></li>
+        </ul>
+      </div>
+      <div class="brand-footer-col">
+        <h5>Stay in touch</h5>
+        <form class="brand-footer-newsletter" onsubmit="event.preventDefault();">
+          <input type="email" placeholder="Email for product updates" />
+          <button type="submit">Subscribe</button>
+        </form>
+        <p class="brand-footer-newsletter-note">New product releases, datasheets, and trade pricing — once a quarter. No spam.</p>
+      </div>
+    </div>
+    <div class="brand-footer-bottom">
+      <p>© 2026 ENVO — Engineered Illumination</p>
+      <span class="brand-footer-region">United States · Global</span>
+      <div class="brand-footer-legal">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Compliance</a>
+        <a href="#">Sitemap</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Top banners (v6 行为：dismiss 永久记 localStorage)
+  function setupBanner(id, storageKey, ctaSelector) {
+    const banner = document.getElementById(id);
+    if (!banner) return;
+    if (localStorage.getItem(storageKey)) { banner.classList.add('hidden'); return; }
+    const dismiss = () => { banner.classList.add('hidden'); localStorage.setItem(storageKey, '1'); };
+    banner.querySelector('[class$="-close"]')?.addEventListener('click', dismiss);
+    if (ctaSelector) banner.querySelector(ctaSelector)?.addEventListener('click', dismiss);
+  }
+  setupBanner('promo-bar', 'envo-promo-bar-dismissed', null);
+
+  // ─── Scroll reveal (subtle fade-up on enter)
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // Region selector
+  const regionSelector = document.getElementById('region-selector');
+  if (regionSelector) {
+    const regionLabel = regionSelector.querySelector('.region-label');
+    const REGIONS = { US: 'US · Global', NZ: 'New Zealand' };
+    let currentRegion = localStorage.getItem('envo-region') || 'US';
+    if (regionLabel) regionLabel.textContent = REGIONS[currentRegion] || REGIONS.US;
+    regionSelector.querySelectorAll('button[data-region]').forEach(btn => {
+      if (btn.dataset.region === currentRegion) btn.classList.add('selected');
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        currentRegion = btn.dataset.region;
+        localStorage.setItem('envo-region', currentRegion);
+        if (regionLabel) regionLabel.textContent = REGIONS[currentRegion];
+        regionSelector.querySelectorAll('button[data-region]').forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+        regionSelector.classList.remove('open');
+      });
+    });
+    regionSelector.querySelector('.region-btn')?.addEventListener('click', e => {
+      e.stopPropagation();
+      regionSelector.classList.toggle('open');
+    });
+    document.addEventListener('click', () => regionSelector.classList.remove('open'));
+  }
+</script>
+</body>
+</html>
